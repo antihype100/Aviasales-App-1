@@ -1,0 +1,14 @@
+.flightWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.flightWrapper__item {
+  font-size: 12px;
+}
+.flightWrapper__item h4 {
+  color: #A0B0B9;
+  margin-bottom: 5px;
+}
+
+/*# sourceMappingURL=Flight.css.map */

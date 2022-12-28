@@ -1,0 +1,13 @@
+.flightWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  &__item {
+    font-size: 12px;
+    h4 {
+      color: #A0B0B9;
+      margin-bottom: 5px;
+    }
+  }
+}

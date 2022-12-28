@@ -1,0 +1,33 @@
+.filterPrice {
+  margin-bottom: 20px;
+}
+.filterPrice__list {
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+}
+.filterPrice__item {
+  display: flex;
+  font-size: 12px;
+  color: #4A4A4A;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: 1px solid #DFE5EC;
+  padding: 0 20px;
+}
+.filterPrice__item:first-child {
+  border-radius: 5px 0 0 5px;
+}
+.filterPrice__item:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.filterPrice__item:hover {
+  background: #2196F3;
+  color: #FFFFFF;
+}
+
+/*# sourceMappingURL=FilterPrice.css.map */
