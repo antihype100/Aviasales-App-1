@@ -4,13 +4,10 @@ import Logo from "../Logo/Logo";
 import FilterPrice from "../FilterPrice/FilterPrice";
 import ShowMore from "../ShowMore/ShowMore";
 import TicketsList from "../TicketsList/TicketsList";
-import {useDispatch, useSelector} from "react-redux";
 import FilterTransplants from "../FilterTransplants/FilterTransplants";
 
 
 const App: React.FC = (props) => {
-    const [width, setWidth] = useState(0)
-
 
 
 

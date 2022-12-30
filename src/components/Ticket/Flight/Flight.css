@@ -10,5 +10,10 @@
   color: #A0B0B9;
   margin-bottom: 5px;
 }
+.flightWrapper__transplants {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
 
 /*# sourceMappingURL=Flight.css.map */

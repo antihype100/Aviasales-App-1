@@ -5,7 +5,7 @@ import App from "./components/App/App";
 import {rootReducer} from "./redux/store";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
-import {applyMiddleware, compose, createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 

@@ -5,6 +5,10 @@
     display: flex;
     width: 100%;
     max-width: 500px;
+    .active {
+      background: #2196F3;
+      color: #FFFFFF;
+    }
   }
 
   &__item {
@@ -34,3 +38,4 @@
     }
   }
 }
+

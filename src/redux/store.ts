@@ -1,8 +1,12 @@
 import {combineReducers} from "redux";
-import {filterTransplantsReducer} from "./reducers/filterTransplantsReducer";
+import {filterReducer} from "./reducers/filterReducer";
+import {ticketsListReducer} from "./reducers/ticketsListReducer";
+import {showMoreReducer} from "./reducers/showMoreReducer";
 
 
 export const rootReducer = combineReducers({
-    filter: filterTransplantsReducer
+    filter: filterReducer,
+    tickets: ticketsListReducer,
+    ticketsOnPage: showMoreReducer
 })
 

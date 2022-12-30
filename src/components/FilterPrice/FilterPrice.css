@@ -6,6 +6,10 @@
   width: 100%;
   max-width: 500px;
 }
+.filterPrice__list .active {
+  background: #2196F3;
+  color: #FFFFFF;
+}
 .filterPrice__item {
   display: flex;
   font-size: 12px;

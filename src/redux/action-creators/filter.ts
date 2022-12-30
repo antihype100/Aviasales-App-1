@@ -1,4 +1,4 @@
-import {TOGGLE, TOGGLE_ALL_STATE} from "../types/filterTransplants";
+import {TOGGLE, TOGGLE_ALL_STATE, FILTER_BY_PRICE} from "../types/filter";
 
 
 export const toggleInput = (name: string) => {
@@ -14,3 +14,11 @@ export const allStateHandler = () => {
         type: TOGGLE_ALL_STATE
     }
 }
+
+export const setFilter = (name: string) =>  {
+    return {
+        type: FILTER_BY_PRICE,
+        name
+    }
+}
+

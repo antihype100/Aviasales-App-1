@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     toggleInput,
     allStateHandler,
-} from "../../redux/action-creators/filterTransplants";
+} from "../../redux/action-creators/filter";
 
 // @ts-ignore
 const FilterTransplants = () => {
@@ -17,13 +17,13 @@ const FilterTransplants = () => {
             countFalse += 1
         }
     }
+
     if (filterState.all && countFalse == 1) {
         dispatch(toggleInput('all'))
     }
     if (!filterState.all && countFalse == 1) {
         dispatch(toggleInput('all'))
     }
-
 
     const handler = (e: any): void => {
         if (e.target.name === 'all') {
