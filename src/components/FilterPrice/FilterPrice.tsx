@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import './FilterPrice.scss'
-import {setFilter} from "../../redux/action-creators/filter";
-import {useDispatch} from "react-redux";
+import {useActions} from "../../hooks/useActions";
 
 const FilterPrice = () => {
     const [filterPrice, setFilterPrice] = useState(false)
     const [filterFastest, setFilterFastest] = useState(false)
     const [filterOptimal, setFilterOptimal] = useState(false)
 
-    const dispatch = useDispatch()
-    const handler: any = (e: any) => {
-        dispatch(setFilter(e.target.dataset.name))
+   const {setFilter} = useActions()
+
+    // Не получилось описать event
+    const handler = (e: any) => {
+        setFilter(e.target.dataset.name)
         if (e.target.dataset.name === 'lowPrice') {
             setFilterPrice(true)
         } else {

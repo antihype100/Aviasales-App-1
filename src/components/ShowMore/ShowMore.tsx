@@ -1,15 +1,14 @@
 import React from 'react';
 import './ShowMore.scss'
-import {useDispatch} from "react-redux";
-import {showMoreTicket} from "../../redux/action-creators/showMore";
+import {useActions} from "../../hooks/useActions";
 
 const ShowMore = () => {
 
-    const dispatch = useDispatch()
+    const {showMoreTicket} = useActions()
 
     return (
         <>
-            <button onClick={(e) => dispatch(showMoreTicket())} className='showMoreBtn'>Показать еще 5 билетов</button>
+            <button onClick={() => showMoreTicket()} className='showMoreBtn'>Показать еще 5 билетов</button>
         </>
     )
 }

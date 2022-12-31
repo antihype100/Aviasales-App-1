@@ -1,24 +1,24 @@
-import {TOGGLE, TOGGLE_ALL_STATE, FILTER_BY_PRICE} from "../types/filter";
+import {FilterActionsType} from "../types/filter";
 
 
 export const toggleInput = (name: string) => {
     return {
-        type: TOGGLE,
-        name
+        type: FilterActionsType.TOGGLE,
+        payload: name
     }
 }
 
 export const allStateHandler = () => {
 
     return {
-        type: TOGGLE_ALL_STATE
+        type: FilterActionsType.TOGGLE_ALL_STATE
     }
 }
 
 export const setFilter = (name: string) =>  {
     return {
-        type: FILTER_BY_PRICE,
-        name
+        type: FilterActionsType.FILTER_BY_PRICE,
+        payload: name
     }
 }
 

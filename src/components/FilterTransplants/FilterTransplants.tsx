@@ -1,36 +1,37 @@
 import React from 'react';
 import './FilterTransplants.scss'
-import {useDispatch, useSelector} from "react-redux";
-import {
-    toggleInput,
-    allStateHandler,
-} from "../../redux/action-creators/filter";
+import {useActions} from "../../hooks/useActions";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {IFilterState} from "../../redux/types/filter";
 
-// @ts-ignore
 const FilterTransplants = () => {
 
-    const dispatch = useDispatch()
-    const filterState: any = useSelector<any>(state => state.filter);
+    const {toggleInput, allStateHandler} = useActions()
+    const filterState = useTypedSelector(state => state.filter);
+
     let countFalse = 0
     for (let key in filterState) {
-        if (!filterState[key]) {
-            countFalse += 1
+        let value = key as keyof IFilterState
+        if (value !== 'priceTimeFilter') {
+            if (!filterState[value]) {
+                countFalse += 1
+            }
         }
     }
 
-    if (filterState.all && countFalse == 1) {
-        dispatch(toggleInput('all'))
+    if (filterState.all && countFalse === 1) {
+        toggleInput('all')
     }
-    if (!filterState.all && countFalse == 1) {
-        dispatch(toggleInput('all'))
+    if (!filterState.all && countFalse === 1) {
+        toggleInput('all')
     }
 
+    //  Не получилось описать event
     const handler = (e: any): void => {
         if (e.target.name === 'all') {
-            dispatch(allStateHandler())
+            allStateHandler()
         } else {
-            dispatch(toggleInput(e.target.name))
-            console.log()
+            toggleInput(e.target.name)
         }
 
     }

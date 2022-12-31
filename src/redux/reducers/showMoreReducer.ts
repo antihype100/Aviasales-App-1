@@ -1,13 +1,13 @@
-import {SHOW_MORE} from "../types/showMore";
+import {IShowMoreState, ShowMoreActions, TShowMoreAction} from "../types/showMore";
 
 
-const initialState: any = {
+const initialState: IShowMoreState = {
     ticketsOnPage: 0
 }
 
-export const showMoreReducer = (state= initialState, action: {type: string, name: string} ) => {
+export const showMoreReducer = (state = initialState, action: TShowMoreAction) => {
     switch (action.type) {
-        case SHOW_MORE: {
+        case ShowMoreActions.SHOW_MORE: {
             return {
                 ticketsOnPage: state.ticketsOnPage + 5
             }

@@ -1,7 +1,7 @@
-import {SHOW_MORE} from "../types/showMore";
+import {ShowMoreActions} from "../types/showMore";
 
 export const showMoreTicket = () => {
     return {
-        type: SHOW_MORE
+        type: ShowMoreActions.SHOW_MORE
     }
 }

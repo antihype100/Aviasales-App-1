@@ -1,10 +1,7 @@
-import {
-    TOGGLE_ALL_STATE,
-    TOGGLE, FILTER_BY_PRICE
-} from "../types/filter";
+import {FilterActions, FilterActionsType, IFilterState} from "../types/filter";
 
 
-const initialState: any = {
+const initialState: IFilterState = {
     all: false,
     without: false,
     oneTransplant: false,
@@ -13,25 +10,17 @@ const initialState: any = {
     priceTimeFilter: ''
 }
 
-export const filterReducer = (state= initialState, action: {type: string, name: string} ) => {
+export const filterReducer = (state = initialState, action: FilterActions ): IFilterState => {
     switch (action.type) {
-        case TOGGLE: {
+        case FilterActionsType.TOGGLE: {
+            console.log(action.payload)
             return {
                 ...state,
-                [action.name]: !state[action.name]
+                [action.payload]: !state[action.payload]
             }
         }
-        case TOGGLE_ALL_STATE: {
-            return {
-                all: !state.all,
-                without: !state.all,
-                oneTransplant: !state.all,
-                twoTransplant: !state.all,
-                threeTransplant: !state.all
-            }
-        }
-        case FILTER_BY_PRICE: {
-            if (action.name == state.priceTimeFilter) {
+        case FilterActionsType.FILTER_BY_PRICE: {
+            if (action.payload === state.priceTimeFilter) {
                 return {
                     ...state,
                     priceTimeFilter: ''
@@ -39,9 +28,20 @@ export const filterReducer = (state= initialState, action: {type: string, name: 
             }
             return {
                 ...state,
-                priceTimeFilter: action.name
+                priceTimeFilter: action.payload
             }
         }
+        case FilterActionsType.TOGGLE_ALL_STATE: {
+            return {
+                ...state,
+                all: !state.all,
+                without: !state.all,
+                oneTransplant: !state.all,
+                twoTransplant: !state.all,
+                threeTransplant: !state.all
+            }
+        }
+
         default:
             return state
     }
