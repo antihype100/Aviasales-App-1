@@ -13,7 +13,6 @@ const initialState: IFilterState = {
 export const filterReducer = (state = initialState, action: FilterActions ): IFilterState => {
     switch (action.type) {
         case FilterActionsType.TOGGLE: {
-            console.log(action.payload)
             return {
                 ...state,
                 [action.payload]: !state[action.payload]
