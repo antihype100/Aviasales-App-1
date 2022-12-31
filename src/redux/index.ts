@@ -10,3 +10,4 @@ export const rootReducer = combineReducers({
     ticketsOnPage: showMoreReducer
 })
 
+export type RootState = ReturnType<typeof rootReducer>

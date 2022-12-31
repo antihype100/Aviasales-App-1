@@ -1,41 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Ticket from "../Ticket/Ticket";
-import {asyncSetTickets} from "../../redux/action-creators/ticketsList";
-import {useDispatch, useSelector} from "react-redux";
+import {useActions} from "../../hooks/useActions";
 import {AviasalesApi} from "../../services/aviasales-api";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {ITicket} from "../../redux/types/ticketsList";
 
 const TicketsList = () => {
 
     const api = new AviasalesApi()
 
-    const dispatch = useDispatch()
-    const [loaded, setLoaded] = useState(false)
+    const {asyncSetTickets} = useActions()
 
     useEffect(() => {
         api.getSearchId().then(data => {
-            dispatch<any>(asyncSetTickets(data.searchId))
+            asyncSetTickets(data.searchId)
         })
-        setTimeout(() => setLoaded(true), 1000)
     }, [])
 
-    const ticketsState: any = useSelector<any>(state => state.tickets);
-    const ticketsOnPage: any = useSelector<any>(state => state.ticketsOnPage.ticketsOnPage);
-    const filter: any = useSelector<any>(state => state.filter)
+    const {tickets, loading} = useTypedSelector(state => state.tickets);
+    const {ticketsOnPage} = useTypedSelector(state => state.ticketsOnPage);
+    const filter = useTypedSelector(state => state.filter)
 
 
     if (filter.priceTimeFilter === 'lowPrice') {
-        ticketsState.tickets.sort((a: any, b: any) => parseFloat(a.price) - parseFloat(b.price))
+        tickets.sort((a: any, b: any) => a.price - b.price)
     }
     if (filter.priceTimeFilter === 'fastest') {
-        ticketsState.tickets.sort((a: any, b: any) => parseFloat(a.segments[0].duration + a.segments[1].duration) - parseFloat(b.segments[0].duration + b.segments[1].duration))
+        tickets.sort((a: any, b: any) => (a.segments[0].duration + a.segments[1].duration) - (b.segments[0].duration + b.segments[1].duration))
     }
     if (filter.priceTimeFilter === 'optimal') {
-        ticketsState.tickets.sort((a: any, b: any) => parseFloat(a.segments[0].duration + a.segments[1].duration + a.price) - parseFloat(b.segments[0].duration + b.segments[1].duration + b.price))
+        tickets.sort((a: any, b: any) => (a.segments[0].duration + a.segments[1].duration + a.price) - (b.segments[0].duration + b.segments[1].duration + b.price))
 
     }
 
-    const element = ticketsState.tickets.map((el: any) => {
+
+    const element = tickets.map((el: ITicket | any ) => {
         const amountTransplants = el.segments[0].stops.length >= el.segments[1].stops.length
                                                                 ? el.segments[0].stops.length
                                                                 : el.segments[1].stops.length
@@ -108,7 +108,7 @@ const TicketsList = () => {
         return null
     })
 
-    return loaded ?
+    return loading ?
         <ul>
             {element.filter((val: any) => val !== null).slice(0 , 6 + ticketsOnPage)}
         </ul>

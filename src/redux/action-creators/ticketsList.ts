@@ -1,15 +1,15 @@
-import {SET_TICKETS} from "../types/ticketsList";
-import {AviasalesApi} from "../../services/aviasales-api";
-import ticketsList from "../../components/TicketsList/TicketsList";
+import {TicketsActionTypes, TicketsListActions} from "../types/ticketsList";
+import {Dispatch} from "redux";
 
 
-const aviasalesApi = new AviasalesApi()
-
-const requestTickets = (dispatch: any, id: string) => {
+export const requestTickets = (dispatch: Dispatch<TicketsListActions>, id: string): void => {
     fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${id}`)
         .then(tickets => tickets.json())
         .then(tickets => {
-            dispatch(setTickets(tickets))
+            dispatch({
+                type: TicketsActionTypes.SET_TICKETS,
+                payload: tickets
+            })
             if (tickets.stop) {
                 return
             }
@@ -18,16 +18,9 @@ const requestTickets = (dispatch: any, id: string) => {
         .catch(() => requestTickets(dispatch, id))
 }
 
-export const setTickets = (tickets: any) => {
-    return {
-        type: SET_TICKETS,
-        tickets
-    }
-
-}
 
 export const asyncSetTickets = (id: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<TicketsListActions>) => {
         requestTickets(dispatch, id)
 
     }

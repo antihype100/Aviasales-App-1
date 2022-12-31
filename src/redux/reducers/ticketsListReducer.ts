@@ -1,17 +1,19 @@
-import {SET_TICKETS} from "../types/ticketsList";
+import {TicketsActionTypes, TicketsListState, TicketsListActions} from "../types/ticketsList";
 
-const initialState: any = {
+const initialState: TicketsListState = {
     tickets: [],
-    stop: false
+    stop: false,
+    loading: false
 }
 
-export const ticketsListReducer = (state = initialState, action: any ) => {
+export const ticketsListReducer = (state = initialState, action: TicketsListActions ) => {
     switch (action.type) {
-        case SET_TICKETS: {
+        case TicketsActionTypes.SET_TICKETS: {
             return {
                 ...state,
-                tickets: [...state.tickets, ...action.tickets.tickets],
-                stop: action.tickets.stop
+                tickets: [...state.tickets, ...action.payload.tickets],
+                stop: action.payload.stop,
+                loading: true
             }
         }
 
